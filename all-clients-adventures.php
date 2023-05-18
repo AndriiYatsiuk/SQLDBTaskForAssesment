@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 
 
 // Retrieve all adventure entries from the database
-$query = "SELECT * FROM `next_adventures`";
+$query = "SELECT * FROM `adventure`";
 $result = mysqli_query($connect, $query);
 
 // Check existing adventures
@@ -59,7 +59,7 @@ if (mysqli_num_rows($result) > 0) {
 
 		<div class="main__container adv-container">
 			<div class="adv-content">
-				<h2>Be a Part Of Our Future Adventures</h2>
+				<h2>All Our Adventures</h2>
 				<?php
 				if (isset($_SESSION['adventure'])) {
 					$adventure = $_SESSION['adventure'];

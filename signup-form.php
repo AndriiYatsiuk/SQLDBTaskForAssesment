@@ -1,5 +1,19 @@
 <?php
+include 'vendor/connect.php';
+
 session_start();
+
+if ($_SESSION['admin']) {
+	header('Location: admin-add.php');
+} elseif ($_SESSION['user']) {
+	header('Location: user-add.php');
+}
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +24,7 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--link to CSS file-->
 	<link rel="stylesheet" href="css/style.css">
-	<title>HC&K new account page</title>
+	<title>HC&K new user account page</title>
 </head>
 
 <body>
@@ -22,23 +36,31 @@ session_start();
 
 
 		<div class="main__container">
-			<div class="main__container_forms account_form">
-				<form action="send_email.php" method="post">
+			<div class="account_form">
+				<form action="vendor/signup.php" method="post" enctype="multipart/form-data">
 					<h3>create new account</h3>
 					<input type="text" name="name" required placeholder="enter your first name">
-					<input type="text" name="lname" required placeholder="enter your last name">
-					<input type="hidden" name="emailType" value="newAccount">
+					<input type="text" name="lstname" required placeholder="enter your last name">
+					<input type="text" name="username" required placeholder="enter your username">
 					<input type="email" name="email" required placeholder="enter your email">
 					<input type="password" name="password" required placeholder="enter your password">
-					<input type="password" name="cpassword" required placeholder="confirm your password">
-					<select name="user_type">
+					<input type="password" name="confpassword" required placeholder="confirm your password">
+
+					<?php
+					if (isset($_SESSION['message'])) {
+						echo '<p class="notemsg">' . $_SESSION['message'] . '</p>';
+						unset($_SESSION['message']);
+					}
+					unset($_SESSION['message']);
+					?>
+
+					<input type="file" name="avatar">
+					<select name="role" id="role">
 						<option value="admin">admin</option>
-						<option value="manager">manager</option>
-						<option value="ceo">CEO</option>
 						<option value="user">user</option>
 					</select>
 					<input type="submit" name="submit" value="create new account" class="form-btn">
-					<p>already have an account? <a href="login.php"> login now</a></p>
+					<p>already have an account? <a href="signin-form.php"> login now</a></p>
 				</form>
 				<br>
 				<a href="logout.php">Logout</a>

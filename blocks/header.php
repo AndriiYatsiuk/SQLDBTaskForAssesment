@@ -12,16 +12,16 @@
 						<a href="index.php" class="header__link">Home</a>
 					</li>
 					<li>
+						<a href="signin-form.php" class="header__link">Login</a>
+					</li>
+					<li>
 						<a href="#" class="header__link">Book Trip</a>
 					</li>
 					<li>
-						<a href="login.php" class="header__link">Login</a>
+						<a href="all-clients-adventures.php" class="header__link">Our Clients Adventures</a>
 					</li>
 					<li>
-						<a href="user-signin.php" class="header__link">Add Your Adventure</a>
-					</li>
-					<li>
-						<a href="all-adventures.php" class="header__link">All Adventures</a>
+						<a href="all-adventures.php" class="header__link">Our Next Adventures</a>
 					</li>
 				</ul>
 			</nav>

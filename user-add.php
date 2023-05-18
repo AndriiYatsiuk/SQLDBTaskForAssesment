@@ -1,9 +1,11 @@
 <?php
 session_start();
-if (!$_SESSION['admin']) {
+if (!$_SESSION['user']) {
 	header('Location: index.php');
-	exit();
 }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
 
 
@@ -33,32 +35,33 @@ if (!$_SESSION['admin']) {
 		<!--main content text-->
 		<div class="main__container">
 			<div class="userfile">
-				<img src="<?= $_SESSION['admin']['avatar'] ?>" width="100vw" alt="">
-				<h2><?= $_SESSION['admin']['name'] ?></h2>
-				<h2><?= $_SESSION['admin']['lstname'] ?></h2>
-				<a href="#"><?= $_SESSION['admin']['email'] ?></a>
+				<img src="<?= $_SESSION['user']['avatar'] ?>" width="100vw" alt="">
+				<h2><?= $_SESSION['user']['name'] ?></h2>
+				<h2><?= $_SESSION['user']['lstname'] ?></h2>
+				<a href="#"><?= $_SESSION['user']['email'] ?></a>
 				<br>
 				<a href="vendor/signout.php">Signout</a>
 			</div>
 			<div class="adventure-form">
-				<form action="vendor/admin-confirm.php" method="post" enctype="multipart/form-data">
-					<h3> Admin - Add Adventure</h3>
+				<form action="vendor/user-confirm.php" method="post" enctype="multipart/form-data">
+					<h3> Dear User, Add your Adventure</h3>
 					<?php
+
 					if (isset($_SESSION['message'])) {
 						echo '<p class="notemsg">' . $_SESSION['message'] . '</p>';
 					}
 					unset($_SESSION['message']);
 					?>
 					<p>Heading</p>
-					<input type="text" name="heading" required placeholder=" Trip Direction">
+					<input type="text" name="heading" required placeholder="Tell us the Trip Direction (for examle: 'Truro down the Stewiake River')">
 					<p>Trip Start Date</p>
 					<input type="date" name="date">
 					<p>Duration</p>
-					<input type="text" name="duration" required placeholder="trip duration number in days">
-					<p>Picture</p>
+					<input type="text" name="duration" required placeholder="How long was your trip? (write number of days)">
+					<p>Add Your Adventure Pictures</p>
 					<input type="file" name="image">
 					<p>Summary</p>
-					<textarea name="summary" id="textar" cols="64" rows="20" required placeholder="Short discription of the next adventure"></textarea>
+					<textarea name="summary" id="textar" cols="64" rows="20" required placeholder="Tell us about your adventure. We want to know everything :)"></textarea>
 					<input type="submit" name="submit" value="Submit" class="form-btn">
 				</form>
 				<br>

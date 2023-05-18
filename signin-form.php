@@ -1,9 +1,13 @@
 <?php
-session_start();
 include 'vendor/connect.php';
-if ($_SESSION['user']) {
-	header('Location: admin-add.php');
-}
+
+session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +35,27 @@ if ($_SESSION['user']) {
 				<form action="vendor/signin.php" method="post">
 
 					<?php
-					if ($_SESSION['message']) {
+					if (isset($_SESSION['message'])) {
 						echo '<p class="regmsg">' . $_SESSION['message'] . '</p>';
+						unset($_SESSION['message']);
 					}
-					unset($_SESSION['message']);
-					if ($_SESSION['message2']) {
+
+					if (isset($_SESSION['message2'])) {
 						echo '<p class="notemsg">' . $_SESSION['message2'] . '</p>';
+						unset($_SESSION['message2']);
 					}
-					unset($_SESSION['message2']);
 					?>
 					<h3>Please enter your name and password</h3>
 					<input type="text" name="username" required placeholder="Username">
 					<input type="password" name="password" required placeholder="Password">
+					<p>Please chose your role:</p>
+					<label for="role"></label>
+					<select name="role" id="role">
+						<option value="admin">admin</option>
+						<option value="user">user</option>
+					</select>
 					<input type="submit" name="login" value="login" class="form-btn">
-					<a href="new_user_account.php">Still not registered?</a>
+					<a href="signup-form.php">Still not registered?</a>
 					<a href="logout.php">Logout</a>
 
 				</form>
