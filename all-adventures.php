@@ -56,29 +56,33 @@ if (mysqli_num_rows($result) > 0) {
 	<div class="wrapper">
 		<!--header, navbar-->
 		<?php include('blocks/header.php'); ?>
+		<div class="container">
+			<div class="adv-container">
 
-		<div class="main__container adv-container">
-			<div class="adv-content">
-				<h2>Be a Part Of Our Future Adventures</h2>
-				<?php
-				if (isset($_SESSION['adventure'])) {
-					$adventure = $_SESSION['adventure'];
-					foreach ($_SESSION['adventure'] as $adventure) {
-						echo '<div class="adv-block">';
-						echo '<img src="' . $adventure['avatar'] . '" width="200vw" alt="">';
-						echo '<h3> ' . $adventure['heading'] . '</h3>';
-						echo '<p>Date: ' . $adventure['date'] . '</p>';
-						echo '<p>Duration: ' . $adventure['duration'] . ' days</p>';
-						echo '<p> ' . $adventure['summary'] . '</p>';
-						echo '</div>';
+				<div class="next-adv-content">
+					<div class="grid-title">
+						<p>Be a Part Of Our Future Adventures</p>
+					</div>
+					<?php
+					if (isset($_SESSION['adventure'])) {
+						$adventures = $_SESSION['adventure'];
+						foreach ($adventures as $index => $adventure) {
+							echo '<div class="next-adv-block adv-post-' . $index . '">';
+							echo '<img src="' . $adventure['avatar'] . '" width="400vw" alt="">';
+							echo '<h3> ' . $adventure['heading'] . '</h3>';
+							echo '<h4>Date: ' . $adventure['date'] . '</h4>';
+							echo '<h4>Duration: ' . $adventure['duration'] . ' days</h4>';
+							echo '<p> ' . $adventure['summary'] . '</p>';
+							echo '<button class="bookthat"><a href="book-trip.php">Book This Trip</a></button>';
+							echo '</div>';
+						}
+					} else {
+						echo "No adventures found.";
 					}
-				} else {
-					echo "No adventures found.";
-				}
-				?>
+					?>
+				</div>
 			</div>
 		</div>
-
 
 		<!--footer-->
 		<?php include('blocks/footer.php'); ?>

@@ -61,22 +61,22 @@ if (mysqli_num_rows($result) > 0) {
 			</div>
 			<div class="container">
 				<div class="content__text">
-					<div class="title">Upcoming Adventures</div>
-					<div class="line"></div>
+					<div class="title"> Upcoming Adventures</div>
 
-					<div class="main__container adv-container">
-						<div class="adv-content">
-							<h2>All Our Adventures</h2>
+					<div class="adv-container">
+						<div class="nextadventure-mainpage">
 							<?php
 							if (isset($_SESSION['adventure'])) {
 								$adventure = $_SESSION['adventure'];
 								foreach ($_SESSION['adventure'] as $adventure) {
-									echo '<div class="adv-block">';
-									echo '<img src="' . $adventure['avatar'] . '" width="500vw" alt="">';
+									echo '<div class="mpageadv-block">';
+									echo '<img src="' . $adventure['avatar'] . '" width="800vw" alt="">';
 									echo '<h3> ' . $adventure['heading'] . '</h3>';
-									echo '<p>Date: ' . $adventure['date'] . '</p>';
-									echo '<p>Duration: ' . $adventure['duration'] . ' days</p>';
+									echo '<h4>Date: ' . $adventure['date'] . '</h4>';
+									echo '<h4>Duration: ' . $adventure['duration'] . ' days</h4>';
 									echo '<p> ' . $adventure['summary'] . '</p>';
+									echo '<button class="bookthat"><a href="book-trip.php">Book This Trip</a></button>';
+									echo '<div class="line"></div>';
 									echo '</div>';
 								}
 							} else {

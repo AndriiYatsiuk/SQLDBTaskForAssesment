@@ -26,8 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		// Insert the form data into the database
 		$query = "INSERT INTO `adventure` (`heading`, `date`, `duration`, `summary`, `avatar`) 
-		          VALUES ('$heading', '$date', '$duration', '$summary', '$path')";
-		if (mysqli_query($connect, $query)) {
+		          VALUES (?, ?, ?, ?, ?)";
+		$stmt = mysqli_prepare($connect, $query);
+		mysqli_stmt_bind_param($stmt, "sssss", $heading, $date, $duration, $summary, $path);
+
+		if (mysqli_stmt_execute($stmt)) {
 			$_SESSION['message'] = 'Adventure added successfully';
 			header('Location: ../all-clients-adventures.php');
 			exit;

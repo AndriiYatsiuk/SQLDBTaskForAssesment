@@ -57,19 +57,20 @@ if (mysqli_num_rows($result) > 0) {
 		<!--header, navbar-->
 		<?php include('blocks/header.php'); ?>
 
-		<div class="main__container adv-container">
-			<div class="adv-content">
+		<div class="adv-container">
+			<div class="clients-adv-content">
 				<h2>All Our Adventures</h2>
 				<?php
 				if (isset($_SESSION['adventure'])) {
 					$adventure = $_SESSION['adventure'];
 					foreach ($_SESSION['adventure'] as $adventure) {
-						echo '<div class="adv-block">';
-						echo '<img src="' . $adventure['avatar'] . '" width="200vw" alt="">';
+						echo '<div class="clientsadv-block">';
+						echo '<img src="' . $adventure['avatar'] . '" width="600vw" alt="">';
 						echo '<h3> ' . $adventure['heading'] . '</h3>';
-						echo '<p>Date: ' . $adventure['date'] . '</p>';
-						echo '<p>Duration: ' . $adventure['duration'] . ' days</p>';
+						echo '<h4>Date: ' . $adventure['date'] . '</h4>';
+						echo '<h4>Duration: ' . $adventure['duration'] . ' days</h4>';
 						echo '<p> ' . $adventure['summary'] . '</p>';
+						echo '<div class="line"></div>';
 						echo '</div>';
 					}
 				} else {
